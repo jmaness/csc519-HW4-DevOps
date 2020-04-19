@@ -77,6 +77,8 @@ function start(app)
 				let payload = JSON.parse(message);
 				server.memoryLoad = payload.memoryLoad;
 				server.cpu = payload.cpu;
+				server.network_rx_sec = payload.network_rx_sec;
+				server.network_tx_sec = payload.network_tx_sec;
 				updateHealth(server);
 			}
 		}
@@ -98,8 +100,8 @@ function start(app)
 				got(server.url, {timeout: 5000, throwHttpErrors: false}).then(function(res)
 				{
 					// TASK 2
-					// captureServer.statusCode = ???;
-					// captureServer.latency = ???;
+					captureServer.statusCode = res.statusCode;
+					captureServer.latency = res.timings.phases.firstByte;
 				}).catch( e => 
 				{
 					// console.log(e);
@@ -114,8 +116,11 @@ function start(app)
 // TASK 3
 function updateHealth(server)
 {
-	let score = 0;
-	// Update score calculation.
+	let scoreWeights = [0.25, 0.25, 0.25, 0.25];
+	let score = scoreWeights[0] * memoryLoadScore(server.memoryLoad) +
+			scoreWeights[1] * cpuScore(server.cpu) +
+			scoreWeights[2] * latencyScore(server.latency) +
+			scoreWeights[3] * statusCodeScore(server.statusCode);
 
 	server.status = score2color(score/4);
 
@@ -127,6 +132,31 @@ function updateHealth(server)
 	{
 		server.scoreTrend.shift();
 	}
+}
+
+function memoryLoadScore(memoryLoad)
+{
+	if (memoryLoad < 75) return 4;
+	return -0.16 * memoryLoad + 16;
+}
+
+function latencyScore(latency)
+{
+	if (!latency || latency < 50) return 4;
+	if (latency < 100) return 3;
+	if (latency < 1000) return 2;
+	if (latency < 3000) return 1;
+	return 0;
+}
+
+function statusCodeScore(statusCode) {
+	if (statusCode < 400) return 4;
+	return 0;
+}
+
+function cpuScore(cpu) {
+	if (cpu < 0.50) return 4;
+	return -0.08 * cpu + 8;
 }
 
 function score2color(score)

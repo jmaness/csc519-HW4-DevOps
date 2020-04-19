@@ -50,6 +50,8 @@
                   <th>Memory %</th>
                   <th>Latency (ms)</th>
                   <th>HTTP</th>
+                  <th>Network rx_sec</th>
+                  <th>Network tx_sec</th>
                   <th>Trend</th>
               </tr>
           </thead>
@@ -60,6 +62,8 @@
                 <td>{{client.memoryLoad}}</td>
                 <td>{{client.latency}}</td>
                 <td>{{client.statusCode}}</td>
+                <td>{{client.network_rx_sec}}</td>
+                <td>{{client.network_tx_sec}}</td>
                 <td>
                   <div>
                     <trend

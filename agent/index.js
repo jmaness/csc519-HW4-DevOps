@@ -9,13 +9,16 @@ class Agent
 {
     memoryLoad()
     {
-       // console.log( os.totalmem(), os.freemem() );
-       return 0;
+       return os.freemem() / os.totalmem() * 100;
     }
     async cpu()
     {
        let load = await si.currentLoad();
-       return 0;
+       return load.avgload;
+    }
+
+    async networkStats() {
+        return si.networkStats();
     }
 }
 
@@ -44,9 +47,13 @@ async function main(name)
     // Push update ever 1 second
     setInterval(async function()
     {
+        let netStats = await agent.networkStats();
+
         let payload = {
             memoryLoad: agent.memoryLoad(),
-            cpu: await agent.cpu()
+            cpu: await agent.cpu(),
+            network_rx_sec: netStats[0].rx_sec,
+            network_tx_sec: netStats[0].tx_sec
         };
         let msg = JSON.stringify(payload);
         await client.publish(name, msg);
