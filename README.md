@@ -44,10 +44,11 @@ impacting the availibity of the system.
 
 _Ans:_ Some tradeoffs include:
 
-1. Exposing untested code to end users
-2. Additional complexity managing combinations of feature flags which also might not have been tested.
-3. Inconsistent experience across all users.
-4. Technical debt where code for unused features remains in the codebase
+* Exposing untested code to end users
+* Additional complexity managing combinations of feature flags which also might not have been tested.
+* Inconsistent experience across all users.
+* Technical debt where code for unused features remains in the codebase
+
 
 4. Describe the Netflix style green-blue deployment. What can canary analysis tell us?
 
