@@ -52,7 +52,13 @@ _Ans:_ Some tradeoffs include:
 
 4. Describe the Netflix style green-blue deployment. What can canary analysis tell us?
 
-_Ans:_
+_Ans:_ The Netflix style green-blue deployment is a deployment strategy involving two sets of production infrastructure:
+* `green` - active infrastructure running stable code processing application requests
+* `blue` - failover infrastructure used to deploy new code which can transition to "green". 
+
+A canary analysis is a statistical analysis of the quality of a new code change deployed on one or a small subset of 
+production instances. If the canary analysis reports a large stastistical value, then the change can more confidently 
+deployed on more production instances. 
 
 
 # Screencast
