@@ -42,8 +42,12 @@ impacting the availibity of the system.
 
 3. What are some tradeoffs associated with dark launches?
 
-_Ans:_
+_Ans:_ Some tradeoffs include:
 
+1. Exposing untested code to end users
+2. Additional complexity managing combinations of feature flags which also might not have been tested.
+3. Inconsistent experience across all users.
+4. Technical debt where code for unused features remains in the codebase
 
 4. Describe the Netflix style green-blue deployment. What can canary analysis tell us?
 
