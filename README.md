@@ -29,6 +29,17 @@ model gives freedom to the end user to subscribe to particular channels based on
 
 _Ans:_
 
+One situation where expand/contract deployment could be useful is when a system consists of multiple services which
+need to be updated but also remain highly available. Often the dependency across multiple services is within shared 
+data, so expand/contract deployment allows data schema and content to change in a predictable, consistent, lossless 
+way.
+
+Another situation where expand/contract deployment is useful is with deploying canary releases with experimental
+features. With a flexible database schema, canary features can be deployed and undeployed if necessary without 
+impacting the availibity of the system.
+
+
+
 3. What are some tradeoffs associated with dark launches?
 
 _Ans:_
