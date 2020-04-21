@@ -36,7 +36,7 @@ way.
 
 Another situation where expand/contract deployment is useful is with deploying canary releases with experimental
 features. With a flexible database schema, canary features can be deployed and undeployed if necessary without 
-impacting the availibity of the system.
+impacting the availability of the system.
 
 
 
@@ -54,7 +54,7 @@ _Ans:_ Some tradeoffs include:
 
 _Ans:_ The Netflix style green-blue deployment is a deployment strategy involving two sets of production infrastructure:
 * `green` - active infrastructure running stable code processing application requests
-* `blue` - failover infrastructure used to deploy new code (either the whole system or individudal services which can
+* `blue` - failover infrastructure used to deploy new code (either the whole system or individual services which can
            transition to "green".
 
 A canary analysis is a statistical analysis of the quality of a new code change deployed on one or a small subset of 
