@@ -64,3 +64,12 @@ change can more confidently deployed on more production instances.
 
 # Screencast
 https://drive.google.com/open?id=1bldc8PxNpz3vUcltoUAT9fMpk1mPPbfZ
+
+# Evaluation
+
+- [x] Complete task 1: 30%
+- [x] Complete task 2: 50%
+- [x] Complete task 3: 75%
+- [x] Complete task 4: 80%
+- [x] Answer conceptual questions: 100%
+- [x] Complete task 5: 120%
